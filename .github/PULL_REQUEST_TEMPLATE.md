@@ -27,6 +27,7 @@ Describe the tests you ran to verify your changes:
 - [ ] My code adheres to the project's coding conventions and style guidelines.
 - [ ] I have performed a self-review of my own code.
 - [ ] I have commented my code, particularly in hard-to-understand areas.
+- [ ] All scientific claims, data sources, and literature citations reference authentic PMIDs or DOIs.
 - [ ] I have updated the documentation accordingly.
-- [ ] No API keys, credentials, or sensitive patient data are committed.
+- [ ] No API keys, credentials, local machine paths, or sensitive patient data are committed.
 - [ ] My changes generate no new warnings or build errors.

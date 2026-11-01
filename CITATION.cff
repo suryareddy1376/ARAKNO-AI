@@ -5,15 +5,22 @@ abstract: "A local-first, privacy-focused computational biology and scientific r
 type: software
 authors:
   - name: "ARAKNO-AI Contributors"
-repository-code: "https://github.com/arakno-ai/arakno-ai"
+repository-code: "https://github.com/suryareddy1376/ARAKNO-AI"
 license: MIT
 version: 0.1.0
 date-released: 2026-11-01
 keywords:
+  - biomedical-research
+  - agentic-ai
   - computational-biology
-  - spinal-biomechanics
-  - biomaterials
+  - bioinformatics
   - alphafold
+  - protein-structure
+  - regenerative-medicine
+  - biomaterials
+  - langgraph
+  - open-science
+  - spinal-biomechanics
   - uniprot
   - pubmed
   - fastapi

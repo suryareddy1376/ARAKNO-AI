@@ -1,8 +1,8 @@
 blank_issues_enabled: false
 contact_links:
   - name: Security Vulnerability Reporting
-    url: https://github.com/arakno-ai/arakno-ai/security/policy
+    url: https://github.com/suryareddy1376/ARAKNO-AI/security/policy
     about: Please report security vulnerabilities privately.
   - name: Documentation
-    url: https://github.com/arakno-ai/arakno-ai/tree/main/docs
+    url: https://github.com/suryareddy1376/ARAKNO-AI/tree/main/docs
     about: Read architecture and deployment documentation.
