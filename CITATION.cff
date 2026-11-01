@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+message: "If you use ARAKNO-AI in your research or software, please cite it as below."
+title: "ARAKNO-AI: Advanced Research and Knowledge Architecture for Novel Organism-inspired Biomedical Research"
+abstract: "A local-first, privacy-focused computational biology and scientific research platform combining PubMed literature exploration, UniProt/AlphaFold 3D structure analysis, and agentic research workflows across spinal biomechanics, bone regeneration, and biomaterials."
+type: software
+authors:
+  - name: "ARAKNO-AI Contributors"
+repository-code: "https://github.com/arakno-ai/arakno-ai"
+license: MIT
+version: 0.1.0
+date-released: 2026-11-01
+keywords:
+  - computational-biology
+  - spinal-biomechanics
+  - biomaterials
+  - alphafold
+  - uniprot
+  - pubmed
+  - fastapi
+  - react

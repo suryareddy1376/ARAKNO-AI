@@ -1,0 +1,37 @@
+name: Feature Request
+description: Suggest an enhancement or new research capability for ARAKNO-AI
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        We welcome proposals for new biomedical data sources, analysis tools, UI enhancements, and computational features.
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem or Motivation
+      description: Is your feature request related to a specific biological problem, workflow bottleneck, or data gap?
+    validations:
+      required: true
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed Solution
+      description: Describe the solution or workflow you would like to see implemented.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternative Solutions Considered
+      description: Describe any alternative workflows or features you have considered.
+  - type: checkboxes
+    id: scientific-validation
+    attributes:
+      label: Scientific Integrity Check
+      options:
+        - label: This proposed feature preserves scientific attribution and objective evidence standards
+          required: true
+        - label: This proposal does not require proprietary, paid services for core functionality
+          required: true
