@@ -68,12 +68,14 @@ export const ReportsPage: React.FC = () => {
   };
 
   return (
-    <div className="space-y-6">
-      <PageHeader
-        title="Research reports"
-        subtitle="Compiled research reports saved locally with citation records."
-        badge="Markdown archives"
-      />
+    <div className="space-y-6 print:space-y-0">
+      <div className="print:hidden">
+        <PageHeader
+          title="Research reports"
+          subtitle="Compiled research reports saved locally with citation records."
+          badge="Markdown archives"
+        />
+      </div>
 
       {isLoading ? (
         <LoadingState message="Loading reports..." />
@@ -84,9 +86,9 @@ export const ReportsPage: React.FC = () => {
           description="Reports generated in the research lab are archived here as Markdown files."
         />
       ) : (
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 print:block">
           {/* Left Column: Report List */}
-          <div className="space-y-3">
+          <div className="space-y-3 print:hidden">
             <span className="text-xs font-medium uppercase tracking-wider text-[#8b949e] px-1">
               Saved reports ({reports.length})
             </span>
@@ -120,10 +122,10 @@ export const ReportsPage: React.FC = () => {
           </div>
 
           {/* Right Column: Active Report Viewer */}
-          <div className="lg:col-span-2 space-y-4">
+          <div className="lg:col-span-2 space-y-4 print:w-full print:space-y-0">
             {selectedReport ? (
-              <div className="space-y-4">
-                <div className="flex justify-end">
+              <div className="space-y-4 print:space-y-0">
+                <div className="flex justify-end print:hidden">
                   <button
                     onClick={() => handleDelete(selectedReport.id)}
                     className="flex items-center gap-1.5 px-3 py-1.5 rounded hover:bg-rose-950/40 text-gray-400 hover:text-rose-400 border border-transparent hover:border-rose-900/40 text-xs transition"

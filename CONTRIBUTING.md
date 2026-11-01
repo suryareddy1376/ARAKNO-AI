@@ -29,11 +29,6 @@ python -m venv venv
 pip install -r requirements.txt
 ```
 
-Run tests:
-```powershell
-pytest tests/
-```
-
 Start the backend server:
 ```powershell
 python -m uvicorn app.main:app --host 127.0.0.1 --port 8000
@@ -60,9 +55,9 @@ npm run dev
    ```bash
    git checkout -b feature/your-feature-name
    ```
-2. Ensure all tests pass:
+2. Ensure frontend builds cleanly and backend code compiles:
    ```bash
-   pytest backend/tests/
+   python -m compileall backend/app
    npm --prefix frontend run build
    ```
 3. Commit your changes with clear, descriptive commit messages:

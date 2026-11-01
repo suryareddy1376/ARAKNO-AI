@@ -85,13 +85,14 @@ export const ResearchLabPage: React.FC = () => {
 
   return (
     <div className="space-y-6">
-      <PageHeader
-        title="Research lab"
-        subtitle="Runs the literature and protein retrieval pipeline against PubMed, Europe PMC, and AlphaFold DB."
-        badge="Pipeline"
-      />
+      <div className={jobResults ? "print:hidden space-y-6" : "space-y-6"}>
+        <PageHeader
+          title="Research lab"
+          subtitle="Runs the literature and protein retrieval pipeline against PubMed, Europe PMC, and AlphaFold DB."
+          badge="Pipeline"
+        />
 
-      {/* Main Research Query Form */}
+        {/* Main Research Query Form */}
       <div className="rounded-lg border border-[#30363d] bg-[#161b22] p-6 space-y-5">
         <div>
           <label className="block text-xs font-semibold uppercase tracking-wider text-[#8b949e] mb-2">
@@ -244,6 +245,7 @@ export const ResearchLabPage: React.FC = () => {
           </div>
         </div>
       )}
+      </div>
 
       {/* Synthesized Research Dossier */}
       {jobResults && (

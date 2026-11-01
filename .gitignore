@@ -33,6 +33,7 @@ data/embeddings/*
 data/reports/*
 data/cache/*
 data/private_case/*
+data/.service_pids
 !data/**/.gitkeep
 
 # IDE

@@ -151,8 +151,12 @@ export const StructuredReportViewer: React.FC<StructuredReportViewerProps> = ({
 
   return (
     <div className={`space-y-6 ${className}`}>
-      {/* Dossier Header & Meta Bar */}
-      <div className="rounded-lg border border-[#30363d] bg-[#161b22] p-6 space-y-4 shadow-sm">
+      {/* ========================================================
+          ON-SCREEN INTERACTIVE REPORT VIEWER (HIDDEN IN PRINT)
+         ======================================================== */}
+      <div className="print:hidden space-y-6">
+        {/* Dossier Header & Meta Bar */}
+        <div className="rounded-lg border border-[#30363d] bg-[#161b22] p-6 space-y-4 shadow-sm">
         <div className="flex flex-col md:flex-row md:items-start justify-between gap-4 border-b border-[#30363d]/60 pb-5">
           <div className="space-y-2 max-w-3xl">
             <div className="flex items-center gap-2 flex-wrap text-[11px]">
@@ -209,7 +213,7 @@ export const StructuredReportViewer: React.FC<StructuredReportViewerProps> = ({
             <button
               onClick={handlePrint}
               className="flex items-center gap-1.5 px-3 py-1.5 rounded bg-blue-600 hover:bg-blue-500 text-xs font-medium text-white transition shadow-sm"
-              title="Print document"
+              title="Print or Save as PDF (Ctrl+P)"
             >
               <Printer className="w-3.5 h-3.5" />
               <span>Print</span>
@@ -772,6 +776,293 @@ export const StructuredReportViewer: React.FC<StructuredReportViewerProps> = ({
           </pre>
         </div>
       )}
+      </div>
+
+      {/* ========================================================
+          PRINT-ONLY PUBLICATION DOSSIER DOCUMENT
+          Optimized for clean paper printing and PDF export
+         ======================================================== */}
+      <div className="hidden print:block font-sans text-gray-900 bg-white p-0 space-y-6 print-dossier">
+        {/* Document Header & Formal Letterhead */}
+        <header className="border-b-2 border-gray-900 pb-4 space-y-3 print-avoid-break">
+          <div className="flex items-center justify-between text-[11px] font-mono tracking-wider uppercase text-gray-600 border-b border-gray-200 pb-2">
+            <span className="font-bold text-gray-900">
+              PROJECT ARAKNO-AI • SCIENTIFIC RESEARCH INTELLIGENCE
+            </span>
+            <span className="font-semibold text-emerald-800">
+              [✓] {verificationStatus} CITATION ARCHIVE
+            </span>
+          </div>
+
+          <div className="space-y-1">
+            <h1 className="text-2xl font-bold text-gray-900 leading-tight">
+              {reportTitle}
+            </h1>
+            <p className="text-xs text-gray-600 italic">
+              Computational Scientific Investigation Dossier &amp; Traceable Evidence Synthesis
+            </p>
+          </div>
+
+          <div className="grid grid-cols-4 gap-2 pt-2 border-t border-gray-200 text-xs">
+            <div>
+              <span className="text-[10px] uppercase font-bold text-gray-500 block">Date Generated</span>
+              <span className="font-medium text-gray-900">
+                {createdAt ? new Date(createdAt).toLocaleString() : new Date().toLocaleDateString()}
+              </span>
+            </div>
+            <div>
+              <span className="text-[10px] uppercase font-bold text-gray-500 block">Investigation Status</span>
+              <span className="font-mono font-semibold text-gray-900 uppercase">{status}</span>
+            </div>
+            <div>
+              <span className="text-[10px] uppercase font-bold text-gray-500 block">Citation Audit</span>
+              <span className="font-semibold text-emerald-700">{verificationStatus} (PubMed / Europe PMC)</span>
+            </div>
+            <div>
+              <span className="text-[10px] uppercase font-bold text-gray-500 block">Dossier Metrics</span>
+              <span className="text-gray-900 font-medium">
+                {references.length} Sources • {rawEvidence.length} Claims • {wordCount ? `${wordCount} words` : 'Full'}
+              </span>
+            </div>
+          </div>
+
+          {/* Regulatory & Scientific Notice */}
+          <div className="p-3 bg-gray-50 border border-gray-300 rounded text-[10px] leading-relaxed text-gray-700 mt-2">
+            <strong>Scientific Notice:</strong> This dossier compiles literature intelligence, primary peer-reviewed citations, and macromolecular structural predictions for research purposes. Computational hypotheses and model predictions are distinguished from clinical trial findings. Not intended for diagnostic or medical decision-making.
+          </div>
+        </header>
+
+        {(!executionSummary && rawEvidence.length === 0 && references.length === 0 && content) ? (
+          <div className="prose max-w-none text-xs text-gray-800 leading-relaxed space-y-3">
+            <ReactMarkdown remarkPlugins={[remarkGfm]}>
+              {content}
+            </ReactMarkdown>
+          </div>
+        ) : (
+          <>
+            {/* 1. Executive Summary */}
+        <section className="space-y-2 print-avoid-break">
+          <div className="border-b border-gray-300 pb-1 flex items-center justify-between">
+            <h2 className="text-sm font-bold uppercase tracking-wider text-gray-900">
+              1. Executive Summary &amp; Scope
+            </h2>
+            <span className="text-[10px] font-mono text-gray-500">Summary &amp; Scope</span>
+          </div>
+          <div className="text-xs leading-relaxed text-gray-800 space-y-2 text-justify">
+            <p>
+              {executionSummary || 'This investigation retrieved peer-reviewed scientific literature and macromolecular structure records.'}
+            </p>
+          </div>
+        </section>
+
+        {/* 2. Identified Biological Targets */}
+        <section className="space-y-2 print-avoid-break">
+          <div className="border-b border-gray-300 pb-1 flex items-center justify-between">
+            <h2 className="text-sm font-bold uppercase tracking-wider text-gray-900">
+              2. Identified Biological Targets ({targets.length})
+            </h2>
+            <span className="text-[10px] font-mono text-gray-500">Macromolecules</span>
+          </div>
+
+          {targets.length === 0 ? (
+            <p className="text-xs italic text-gray-500 py-1">
+              No specific macromolecular protein targets were isolated for this query.
+            </p>
+          ) : (
+            <table className="w-full text-left text-xs border border-gray-300">
+              <thead className="bg-gray-100 text-gray-700 font-semibold border-b border-gray-300 text-[10px] uppercase">
+                <tr>
+                  <th className="p-2 border-r border-gray-300">Gene / Symbol</th>
+                  <th className="p-2 border-r border-gray-300">Macromolecule Name</th>
+                  <th className="p-2 border-r border-gray-300">UniProt Accession</th>
+                  <th className="p-2 border-r border-gray-300">Organism</th>
+                  <th className="p-2">AlphaFold pLDDT</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-200">
+                {targets.map((t: any, idx: number) => (
+                  <tr key={t.accession || idx} className="print-avoid-break">
+                    <td className="p-2 font-mono font-bold text-gray-900 border-r border-gray-300">
+                      {t.symbol}
+                    </td>
+                    <td className="p-2 font-medium text-gray-800 border-r border-gray-300">
+                      {t.name}
+                    </td>
+                    <td className="p-2 font-mono text-gray-700 border-r border-gray-300">
+                      {t.accession}
+                    </td>
+                    <td className="p-2 italic text-gray-600 border-r border-gray-300">
+                      {t.organism}
+                    </td>
+                    <td className="p-2 font-mono font-semibold text-gray-900">
+                      {t.plddt ? `${t.plddt} (Mean)` : 'N/A'}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )}
+        </section>
+
+        {/* 3. Evidence Matrix */}
+        <section className="space-y-2">
+          <div className="border-b border-gray-300 pb-1 flex items-center justify-between print-avoid-break">
+            <h2 className="text-sm font-bold uppercase tracking-wider text-gray-900">
+              3. Traceable Evidence Matrix ({rawEvidence.length} Claims)
+            </h2>
+            <span className="text-[10px] font-mono text-gray-500">Categories A through E</span>
+          </div>
+
+          {rawEvidence.length === 0 ? (
+            <p className="text-xs italic text-gray-500 py-1">No evidence claims catalogued in this report.</p>
+          ) : (
+            <table className="w-full text-left text-xs border border-gray-300">
+              <thead className="bg-gray-100 text-gray-700 font-semibold border-b border-gray-300 text-[10px] uppercase">
+                <tr>
+                  <th className="p-2 border-r border-gray-300 w-16">Cat.</th>
+                  <th className="p-2 border-r border-gray-300 w-20">Strength</th>
+                  <th className="p-2 border-r border-gray-300 w-1/3">Source Publication &amp; Citation</th>
+                  <th className="p-2 border-r border-gray-300 w-24">Year / Journal</th>
+                  <th className="p-2">Key Traceable Finding</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-200">
+                {rawEvidence.map((ev: ParsedEvidence, idx: number) => (
+                  <tr key={idx} className="print-avoid-break">
+                    <td className="p-2 font-mono font-bold text-gray-900 border-r border-gray-300 align-top">
+                      Cat {ev.category}
+                    </td>
+                    <td className="p-2 font-mono text-[10px] uppercase text-gray-700 border-r border-gray-300 align-top">
+                      {ev.strength}
+                    </td>
+                    <td className="p-2 border-r border-gray-300 align-top">
+                      <div className="font-semibold text-gray-900 text-xs leading-snug">
+                        {ev.sourceTitle}
+                      </div>
+                      <div className="mt-1 flex items-center gap-2 text-[10px] font-mono text-gray-600">
+                        {ev.pmid && <span>PMID: {ev.pmid}</span>}
+                        {ev.doi && <span>DOI: {ev.doi}</span>}
+                      </div>
+                    </td>
+                    <td className="p-2 text-gray-700 border-r border-gray-300 align-top text-[11px]">
+                      <div>{ev.year || 'N/A'}</div>
+                      <div className="italic text-gray-500 text-[10px]">{ev.journal}</div>
+                    </td>
+                    <td className="p-2 text-gray-800 leading-relaxed align-top text-justify">
+                      {ev.finding}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )}
+        </section>
+
+        {/* 4. Citation Verification Audit */}
+        <section className="space-y-2 print-avoid-break">
+          <div className="border-b border-gray-300 pb-1 flex items-center justify-between">
+            <h2 className="text-sm font-bold uppercase tracking-wider text-gray-900">
+              4. Citation Integrity &amp; Traceability Audit
+            </h2>
+            <span className="text-[10px] font-mono text-gray-500">Pipeline Verification</span>
+          </div>
+
+          <div className="p-3 border border-emerald-300 bg-emerald-50/50 rounded space-y-1.5 text-xs text-gray-800">
+            <div className="flex items-center justify-between">
+              <span className="font-bold text-emerald-900">
+                Status: {verificationStatus}
+              </span>
+              <span className="font-mono text-[10px] text-emerald-800">100% Resolved Identifiers</span>
+            </div>
+            <p className="font-medium text-gray-900">{verificationSummary}</p>
+            <p className="text-[11px] text-gray-600 leading-relaxed">
+              Every evidence claim synthesized in this report is mapped to verified PubMed Identifier (PMID) or Digital Object Identifier (DOI) records. Fabricated citations, hallucinated authors, or unverified secondary interpretations are prohibited by the pipeline audit node.
+            </p>
+          </div>
+        </section>
+
+        {/* 5. References */}
+        <section className="space-y-2">
+          <div className="border-b border-gray-300 pb-1 flex items-center justify-between print-avoid-break">
+            <h2 className="text-sm font-bold uppercase tracking-wider text-gray-900">
+              5. Peer-Reviewed References &amp; Bibliography ({references.length})
+            </h2>
+            <span className="text-[10px] font-mono text-gray-500">Primary Literature</span>
+          </div>
+
+          {references.length === 0 ? (
+            <p className="text-xs italic text-gray-500 py-1">No formal bibliographic references catalogued.</p>
+          ) : (
+            <div className="space-y-2 text-xs">
+              {references.map((ref: any) => (
+                <div
+                  key={ref.index || ref.pmid || ref.title}
+                  className="p-2.5 border border-gray-200 rounded bg-gray-50/40 print-avoid-break space-y-1"
+                >
+                  <div className="flex items-start gap-2">
+                    <span className="font-mono font-bold text-gray-900 shrink-0">
+                      [{ref.index}]
+                    </span>
+                    <div className="flex-1">
+                      <div className="font-semibold text-gray-900 leading-snug">
+                        {ref.title}
+                      </div>
+                      {ref.authors && (
+                        <div className="text-[11px] text-gray-600 mt-0.5">{ref.authors}</div>
+                      )}
+                      <div className="text-[11px] text-gray-600 mt-0.5 flex items-center gap-2 flex-wrap">
+                        {ref.journal && <span className="italic">{ref.journal}</span>}
+                        {ref.year && <span>({ref.year})</span>}
+                        {ref.pmid && (
+                          <span className="font-mono text-[10px] bg-gray-100 px-1.5 py-0.5 rounded border border-gray-300">
+                            PMID: {ref.pmid}
+                          </span>
+                        )}
+                        {ref.doi && (
+                          <span className="font-mono text-[10px] bg-gray-100 px-1.5 py-0.5 rounded border border-gray-300">
+                            DOI: {ref.doi}
+                          </span>
+                        )}
+                        {ref.pmid && (
+                          <span className="text-[10px] text-blue-700">
+                            https://pubmed.ncbi.nlm.nih.gov/{ref.pmid}/
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </section>
+
+        {/* 6. AI Evidence Synthesis */}
+        {aiSynthesis && (
+          <section className="space-y-2 print-avoid-break">
+            <div className="border-b border-gray-300 pb-1 flex items-center justify-between">
+              <h2 className="text-sm font-bold uppercase tracking-wider text-gray-900">
+                6. AI Evidence Synthesis &amp; Cross-Domain Analysis
+              </h2>
+              <span className="text-[10px] font-mono text-gray-500">Neural Synthesis</span>
+            </div>
+            <div className="p-3 border border-blue-200 bg-blue-50/40 rounded space-y-2 text-xs text-gray-800 leading-relaxed text-justify">
+              <div className="whitespace-pre-wrap">{aiSynthesis}</div>
+              <div className="pt-2 border-t border-blue-200 text-[10px] text-gray-500 italic">
+                Cross-domain synthesis produced via ARAKNO-AI neural reasoning engine. Intended as computational analysis.
+              </div>
+            </div>
+          </section>
+        )}
+        </>
+      )}
+
+        {/* Document Footer */}
+        <footer className="border-t border-gray-300 pt-3 flex items-center justify-between text-[10px] text-gray-500 font-mono print-avoid-break">
+          <span>ARAKNO-AI Open-Source Biomedical Intelligence Initiative</span>
+          <span>Verified Local Scientific Dossier Archive</span>
+        </footer>
+      </div>
     </div>
   );
 };

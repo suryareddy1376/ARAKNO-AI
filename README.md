@@ -1,6 +1,7 @@
 # ARAKNO-AI
 
-## Advanced Research and Knowledge Architecture for Novel Organism-inspired Biomedical Research
+**An Open-Source AI-Powered Biomedical Research Intelligence Initiative**  
+*Advanced Research and Knowledge Architecture for Novel Organism-inspired Biomedical Research*
 
 ![Status](https://img.shields.io/badge/status-active-green)
 ![License](https://img.shields.io/badge/license-MIT-blue)
@@ -8,21 +9,65 @@
 ![Python](https://img.shields.io/badge/python-3.11%20%7C%203.12-blue)
 ![Node](https://img.shields.io/badge/node-18%2B%20LTS-green)
 
-ARAKNO-AI is an AI-powered biomedical research intelligence platform designed for investigating human biological systems, spinal biomechanics, bone regeneration, tissue engineering, biomaterials, protein structures, muscle biology, sensory systems, and spider-inspired biological materials.
+---
 
-> **Important**: This platform is intended for scientific literature exploration and computational research, not diagnosis, treatment planning, or medical decision-making.
+## Project Overview
+
+ARAKNO-AI is an open-source initiative dedicated to exploring the intersection of Artificial Intelligence, Computational Biology, Biomedical Engineering and Bioinspired Science.
+
+Our primary aim is to develop an intelligent research ecosystem that accelerates scientific discovery through automated literature analysis, protein structure exploration, biological data analysis, evidence synthesis and interdisciplinary collaboration.
 
 ---
 
-## Features
+## Main Research Mission
 
-### Research Divisions
-- **ARAKNO-SPINE** — Spinal anatomy, biomechanics, fusion biology, instrumentation
-- **ARAKNO-BONE** — Bone biology, regeneration, tissue engineering
-- **ARAKNO-MUSCLE** — Skeletal muscle, tendons, connective tissues
-- **ARAKNO-SENSE** — Mechanoreceptors, sensory biology, spider sensilla
-- **ARAKNO-SILK** — Spider silk proteins, biomaterials, scaffolds
-- **ARAKNO-NEURO** — Neural signalling, regeneration, neuroplasticity
+To investigate human biological systems and explore scientifically supported possibilities for tissue regeneration, advanced biomaterials, bone healing, spinal reconstruction and long-term implant independence.
+
+---
+
+## Research Divisions
+
+- **ARAKNO-SPINE:** Spinal biomechanics, spinal fusion, implant integration and implant-removal research.
+- **ARAKNO-BONE:** Bone biology, collagen, mineralization and regeneration.
+- **ARAKNO-MUSCLE:** Muscle biology, biomechanics and tissue regeneration.
+- **ARAKNO-SENSE:** Mechanoreceptors and biological sensory systems.
+- **ARAKNO-SILK:** Spider silk proteins, spidroins and bioinspired biomaterials.
+- **ARAKNO-NEURO:** Neural systems, sensory-motor coordination and nerve regeneration.
+
+---
+
+## User Interface & Screenshots
+
+### 1. Research Lab Overview
+Real-time dashboard summarizing active biomedical projects, evidence strength distributions, saved literature, 3D structures, and system diagnostics.
+
+![Research Lab Overview](docs/images/dashboard-overview.png)
+
+### 2. Protein Structure Explorer & AlphaFold 3D Viewer
+Interactive 3D molecular viewer with residue wireframes, pLDDT prediction confidence metrics, and UniProt biological annotation records.
+
+![Protein Structure Explorer](docs/images/protein-structure-explorer.png)
+
+### 3. Scientific Intelligence Dossier & Research Reports
+Structured multi-section research dossiers with verified PubMed/Europe PMC citation audits, biological targets, and evidence synthesis matrices.
+
+![Research Reports Dossier](docs/images/research-reports-dossier.png)
+
+---
+
+## Technology and Research
+
+ARAKNO-AI combines Agentic AI, LangGraph, Python, React, FastAPI, computational biology and publicly accessible scientific resources, including PubMed, Europe PMC, UniProt and AlphaFold Protein Structure Database.
+
+### Technology Stack
+| Layer | Technologies |
+|-------|-------------|
+| Frontend | React, TypeScript, Tailwind CSS, Vite, Recharts, 3Dmol.js |
+| Backend | Python, FastAPI, SQLAlchemy, Pydantic |
+| Database | SQLite with FTS5 |
+| AI / Agents | LangGraph, LangChain (optional LLM support) |
+| Biology | Biopython, UniProt API, AlphaFold DB |
+| APIs | PubMed, Europe PMC, AlphaFold DB, UniProt |
 
 ### Core Capabilities
 - 📚 **Literature Intelligence** — Search PubMed and Europe PMC, save and organize publications
@@ -33,15 +78,23 @@ ARAKNO-AI is an AI-powered biomedical research intelligence platform designed fo
 - 📝 **Research Reports** — Generated, traceable scientific reports
 - 🔒 **Privacy-First** — Local-only, no cloud dependencies, no data exfiltration
 
-### Technology Stack
-| Layer | Technologies |
-|-------|-------------|
-| Frontend | React, TypeScript, Tailwind CSS, Vite, Recharts, 3Dmol.js |
-| Backend | Python, FastAPI, SQLAlchemy, Pydantic |
-| Database | SQLite with FTS5 |
-| AI | LangGraph, LangChain (optional LLM) |
-| Biology | Biopython |
-| APIs | PubMed, Europe PMC, AlphaFold DB, UniProt |
+---
+
+## Open Collaboration
+
+We welcome AI developers, computational biologists, biomedical researchers, bioengineers, biotechnology students and scientific enthusiasts to contribute through software development, literature reviews, protein research, scientific validation, documentation and new research ideas.
+
+Please read our [Contributing Guide](CONTRIBUTING.md) and [Code of Conduct](CODE_OF_CONDUCT.md) to get started.
+
+---
+
+## Our Vision
+
+Build an open, collaborative, evidence-driven research ecosystem that uses AI and interdisciplinary science to investigate complex biological challenges and advance future biomedical innovation.
+
+> **Important Research Notice**: ARAKNO-AI is a research initiative, not a clinically validated medical platform. Scientific hypotheses will always be distinguished from experimentally established findings.
+>
+> **Research Together. Explore Biology. Build Scientific Possibilities.**
 
 ---
 
@@ -51,7 +104,7 @@ ARAKNO-AI is an AI-powered biomedical research intelligence platform designed fo
 - Python 3.11+ 
 - Node.js 18+ LTS
 - npm
-- Windows 10/11
+- Windows 10/11 (or Linux / macOS)
 
 ### Installation
 
@@ -133,8 +186,9 @@ ARAKNO-AI/
 │   ├── reports/       # Generated reports
 │   ├── cache/         # API response cache
 │   └── private_case/  # Private medical data (isolated)
+├── docs/              # Documentation & Architecture
+│   └── images/        # UI screenshots & visual assets
 ├── scripts/           # Setup and launch scripts
-├── docs/              # Documentation
 └── .env               # Configuration (not in git)
 ```
 

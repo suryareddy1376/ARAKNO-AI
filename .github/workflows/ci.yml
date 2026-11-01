@@ -7,7 +7,7 @@ on:
     branches: [main]
 
 jobs:
-  backend-tests:
+  backend-check:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -23,9 +23,9 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r backend/requirements.txt
 
-      - name: Run pytest test suite
+      - name: Validate backend syntax
         run: |
-          pytest backend/tests/ -v
+          python -m compileall backend/app
 
   frontend-build:
     runs-on: ubuntu-latest

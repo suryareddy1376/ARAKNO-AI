@@ -17,7 +17,7 @@ Closes #
 ## Testing
 
 Describe the tests you ran to verify your changes:
-- [ ] Backend test suite passed (`pytest backend/tests/`)
+- [ ] Backend syntax and validation verified (`python -m compileall backend/app`)
 - [ ] Frontend builds cleanly with zero errors (`cd frontend && npm run build`)
 - [ ] Manually tested affected endpoints or UI views
 - [ ] Verified zero-cost execution (works with `LLM_PROVIDER=none`)

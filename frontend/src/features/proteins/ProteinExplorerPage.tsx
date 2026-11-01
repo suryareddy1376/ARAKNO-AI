@@ -344,9 +344,9 @@ export const ProteinExplorerPage: React.FC = () => {
 
       {/* Target Macromolecular Dossier Modal */}
       {showDossierModal && protein && (
-        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 z-50 overflow-y-auto">
-          <div className="rounded-xl border border-[#30363d] bg-[#0f1117] max-w-5xl w-full max-h-[90vh] overflow-y-auto p-6 space-y-4 shadow-2xl">
-            <div className="flex items-center justify-between pb-3 border-b border-[#30363d]">
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 z-50 overflow-y-auto print:static print:inset-auto print:bg-white print:p-0 print:overflow-visible">
+          <div className="rounded-xl border border-[#30363d] bg-[#0f1117] max-w-5xl w-full max-h-[90vh] overflow-y-auto p-6 space-y-4 shadow-2xl print:max-h-none print:max-w-none print:p-0 print:border-none print:bg-white print:shadow-none print:overflow-visible">
+            <div className="flex items-center justify-between pb-3 border-b border-[#30363d] print:hidden">
               <span className="text-xs font-mono uppercase text-purple-400 font-semibold">
                 Macromolecular target dossier
               </span>
