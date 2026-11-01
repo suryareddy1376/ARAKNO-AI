@@ -26,6 +26,9 @@ aiofiles>=24.1.0
 # AI & LLM Clients
 openai>=1.50.0
 
+# Biology & Bioinformatics
+biopython>=1.84
+
 # Testing
 pytest>=8.3.0
 pytest-asyncio>=0.24.0
